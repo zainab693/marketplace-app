@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { ProductCardComponent } from '../shared/components/product-card/product-card.component';
 
 @Component({
   selector: 'app-home',

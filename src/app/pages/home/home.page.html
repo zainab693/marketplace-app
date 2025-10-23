@@ -1,33 +1,47 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Catalog</ion-title>
-
     <ion-buttons slot="end">
-      <ion-button routerLink="/cart">
-        Cart <ion-badge>{{ cart.count }}</ion-badge>
-      </ion-button>
-
-      <ion-button
-        *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid"
-        [routerLink]="['/store', sid]">
-        My Store
-      </ion-button>
-
+      <ion-button routerLink="/cart">Cart <ion-badge>{{ cart.count }}</ion-badge></ion-button>
+      <ion-button *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid" [routerLink]="['/store', sid]">My Store</ion-button>
       <ion-button *ngIf="!auth.user" routerLink="/login">Login</ion-button>
-      <ion-button *ngIf="!auth.user" routerLink="/register">Register</ion-button>
       <ion-button *ngIf="auth.user" (click)="logout()">Logout</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
+  <!-- Search -->
   <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
 
+  <!-- Categories -->
+  <div style="margin: 8px 0;">
+    <ion-chip
+      *ngFor="let c of categories"
+      [outline]="category !== c"
+      (click)="category = c; search()">
+      <ion-label>{{ c }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- Price range -->
   <ion-list>
-    <ion-item *ngFor="let p of filtered">
-      <ion-label>{{ p.title }}</ion-label>
-      <ion-button slot="end" (click)="addToCart(p)">Add</ion-button>
+    <ion-item>
+      <ion-label position="stacked">Min Price</ion-label>
+      <ion-input type="number" [(ngModel)]="minPrice" (ionInput)="search()" placeholder="e.g., 2.50"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Max Price</ion-label>
+      <ion-input type="number" [(ngModel)]="maxPrice" (ionInput)="search()" placeholder="e.g., 30.00"></ion-input>
     </ion-item>
   </ion-list>
+
+  <!-- Cards -->
+  <div class="grid">
+    <app-product-card *ngFor="let p of filtered" [product]="p" (add)="addToCart(p)"></app-product-card>
+  </div>
+
+  <ng-container *ngIf="!filtered.length">
+    <p>No products match your filters.</p>
+  </ng-container>
 </ion-content>

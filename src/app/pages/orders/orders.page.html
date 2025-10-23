@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="items.length; else none">
+    <ion-item *ngFor="let o of items" [routerLink]="['/orders', o.id]">
+      <ion-label>
+        <div>Order #{{ o.id }} — {{ o.status }}</div>
+        <small>{{ o.createdAt | date:'medium' }} — Total: $ {{ o.total }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ng-template #none>
+    <p>No orders yet.</p>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order #{{ order?.id }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="order; else loading">
+  <p>Status: {{ order.status }}</p>
+  <p>Placed: {{ order.createdAt | date:'medium' }}</p>
+  <h3>Items</h3>
+  <ion-list>
+    <ion-item *ngFor="let i of order.items">
+      <ion-label>
+        <div>{{ i.title }}</div>
+        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <h2>Total: $ {{ order.total }}</h2>
+</ion-content>
+
+<ng-template #loading>
+  <ion-content class="ion-padding">Loading…</ion-content>
+</ng-template>

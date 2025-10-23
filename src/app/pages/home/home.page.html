@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Catalog</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cart">
+        Cart <ion-badge>{{ cart.count }}</ion-badge>
+      </ion-button>
+
+      <ion-button
+        *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid"
+        [routerLink]="['/store', sid]">
+        My Store
+      </ion-button>
+
+      <ion-button *ngIf="!auth.user" routerLink="/login">Login</ion-button>
+      <ion-button *ngIf="!auth.user" routerLink="/register">Register</ion-button>
+      <ion-button *ngIf="auth.user" (click)="logout()">Logout</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let p of filtered">
+      <ion-label>{{ p.title }}</ion-label>
+      <ion-button slot="end" (click)="addToCart(p)">Add</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

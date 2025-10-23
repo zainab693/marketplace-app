@@ -1,0 +1,7 @@
+{
+  "/api/products": "/products",
+  "/api/products/:id": "/products/:id",
+  "/api/stores/:storeId/products": "/products?storeId=:storeId",
+  "/api/orders": "/orders",
+  "/api/orders/:id": "/orders/:id"
+}

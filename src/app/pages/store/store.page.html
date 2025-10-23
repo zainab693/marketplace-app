@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Store ({{ storeId }})</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/store', storeId, 'products', 'new']">New Product</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="items.length; else none">
+    <ion-item *ngFor="let p of items">
+      <ion-label>
+        <div>{{ p.title }}</div>
+        <small>$ {{ p.price }}</small>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['/store', storeId, 'products', p.id, 'edit']">Edit</ion-button>
+        <ion-button color="danger" (click)="delete(p.id)">Delete</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+  <ng-template #none>
+    <p>No products yet.</p>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="auth.user; else guest">
+    <ion-item><ion-label><b>Name:</b> {{ auth.user.name }}</ion-label></ion-item>
+    <ion-item><ion-label><b>Email:</b> {{ auth.user.email }}</ion-label></ion-item>
+    <ion-item><ion-label><b>Roles:</b> {{ auth.user.roles.join(', ') }}</ion-label></ion-item>
+    <ion-item *ngIf="auth.user.storeId"><ion-label><b>Store:</b> {{ auth.user.storeId }}</ion-label></ion-item>
+
+    <ion-button expand="block" (click)="logout()">Logout</ion-button>
+  </ng-container>
+
+  <ng-template #guest>
+    <p>You’re not logged in.</p>
+    <ion-button routerLink="/login">Login</ion-button>
+  </ng-template>
+</ion-content>

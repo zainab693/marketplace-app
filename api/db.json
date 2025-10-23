@@ -1,0 +1,495 @@
+{
+  "products": [
+    {
+      "id": "4d75",
+      "title": "Apples",
+      "price": 2,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "73fe",
+      "title": "Milk",
+      "price": 4,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "95c6",
+      "title": "Eggs",
+      "price": 5,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "4584",
+      "title": "Oranges",
+      "price": 2,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "484f",
+      "title": "Bananas",
+      "price": 0.65,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "a174",
+      "title": "Bread",
+      "price": 3,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "2373",
+      "title": "Strawberry Jam",
+      "price": 4,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    },
+    {
+      "id": "f32f",
+      "title": "Bracelet",
+      "price": 6,
+      "description": "",
+      "currency": "USD",
+      "storeId": "s1"
+    }
+  ],
+  "stores": [
+    {
+      "id": "s1",
+      "name": "Peach & Vine"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1a8f",
+      "customerName": "Zainab",
+      "phone": "9933927176",
+      "pickupTime": "Tomorrow 2 PM",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        }
+      ],
+      "total": 8,
+      "status": "PLACED",
+      "createdAt": "2025-10-12T16:16:32.218Z"
+    },
+    {
+      "id": "f256",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 3
+        }
+      ],
+      "total": 16,
+      "status": "PLACED",
+      "createdAt": "2025-10-12T17:46:27.661Z"
+    },
+    {
+      "id": "9488",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 1
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 1
+        },
+        {
+          "productId": "4584",
+          "title": "Oranges",
+          "price": 2,
+          "qty": 1
+        }
+      ],
+      "total": 13,
+      "status": "PLACED",
+      "createdAt": "2025-10-12T18:20:25.234Z"
+    },
+    {
+      "id": "c4cb",
+      "customerName": "Marilyn Ly",
+      "phone": "1234567890",
+      "pickupTime": "Today 3 PM",
+      "items": [
+        {
+          "productId": "484f",
+          "title": "Bananas",
+          "price": 0.65,
+          "qty": 1
+        },
+        {
+          "productId": "4584",
+          "title": "Oranges",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 1
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        },
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        }
+      ],
+      "total": 17.65,
+      "status": "PLACED",
+      "createdAt": "2025-10-12T19:11:24.710Z"
+    },
+    {
+      "id": "7da8",
+      "customerName": "John",
+      "phone": "1234567819",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 1
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 1
+        },
+        {
+          "productId": "4584",
+          "title": "Oranges",
+          "price": 2,
+          "qty": 1
+        },
+        {
+          "productId": "484f",
+          "title": "Bananas",
+          "price": 0.65,
+          "qty": 1
+        }
+      ],
+      "total": 13.65,
+      "status": "PLACED",
+      "createdAt": "2025-10-13T21:48:17.787Z"
+    },
+    {
+      "id": "0c87",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 3
+        }
+      ],
+      "total": 6,
+      "status": "PLACED",
+      "createdAt": "2025-10-13T21:58:35.280Z"
+    },
+    {
+      "id": "610a",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 1
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 2
+        }
+      ],
+      "total": 16,
+      "status": "PLACED",
+      "createdAt": "2025-10-13T21:59:26.325Z"
+    },
+    {
+      "id": "72ba",
+      "customerName": "Bob",
+      "phone": "1234567820",
+      "pickupTime": "Today 8 PM",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "484f",
+          "title": "Bananas",
+          "price": 0.65,
+          "qty": 1
+        },
+        {
+          "productId": "a174",
+          "title": "Bread",
+          "price": 3,
+          "qty": 1
+        },
+        {
+          "productId": "2373",
+          "title": "Strawberry Jam",
+          "price": 4,
+          "qty": 1
+        }
+      ],
+      "total": 11.65,
+      "status": "PLACED",
+      "createdAt": "2025-10-14T00:27:52.957Z"
+    },
+    {
+      "id": "0349",
+      "customerName": "Zainab",
+      "phone": "1234567892",
+      "pickupTime": "Today 9 PM",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 1
+        },
+        {
+          "productId": "a174",
+          "title": "Bread",
+          "price": 3,
+          "qty": 1
+        },
+        {
+          "productId": "2373",
+          "title": "Strawberry Jam",
+          "price": 6,
+          "qty": 1
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 2
+        }
+      ],
+      "total": 21,
+      "status": "PLACED",
+      "createdAt": "2025-10-14T17:54:48.103Z"
+    },
+    {
+      "id": "b5f7",
+      "customerName": "Sam",
+      "phone": "1234567894",
+      "pickupTime": "Tomorrow 9 AM",
+      "items": [
+        {
+          "productId": "a174",
+          "title": "Bread",
+          "price": 3,
+          "qty": 2
+        },
+        {
+          "productId": "4584",
+          "title": "Oranges",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        }
+      ],
+      "total": 14,
+      "status": "PLACED",
+      "createdAt": "2025-10-14T19:47:09.330Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "name": "Vera Vendor",
+      "email": "vendor@example.com",
+      "password": "vendor123",
+      "roles": [
+        "vendor"
+      ],
+      "storeId": "s1"
+    },
+    {
+      "id": "u2",
+      "name": "Carl Customer",
+      "email": "customer@example.com",
+      "password": "customer123",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "daa8",
+      "name": "Zainab",
+      "email": "zainab123@gmail.com",
+      "password": "12345678",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "aada",
+      "name": "Hursh ",
+      "email": "hursh123@gmail.com",
+      "password": "123456789",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "1bd7",
+      "name": "Marilyn ",
+      "email": "marilyn123@gmail.com",
+      "password": "1234",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "44bf",
+      "name": "John ",
+      "email": "john1234@gmail.com`",
+      "password": "john",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "a9dc",
+      "name": "John ",
+      "email": "john1234@gmail.com`",
+      "password": "john",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "3d81",
+      "name": "John ",
+      "email": "john1234@gmail.com",
+      "password": "john",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "fbb7",
+      "name": "Carl",
+      "email": "carl123@gmail.com",
+      "password": "carl",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "4663",
+      "name": "Bob",
+      "email": "bob123@gmail.com",
+      "password": "",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "8855",
+      "name": "Bob",
+      "email": "bob123@gmail.com",
+      "password": "bob",
+      "roles": [
+        "customer"
+      ]
+    },
+    {
+      "id": "6e6f",
+      "name": "Sam",
+      "email": "sam123@gmail.com",
+      "password": "sam",
+      "roles": [
+        "customer"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list [formGroup]="form">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input formControlName="title" placeholder="e.g., Apple"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Price</ion-label>
+      <ion-input type="number" formControlName="price" placeholder="2"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Currency</ion-label>
+      <ion-input formControlName="currency" placeholder="USD"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-input formControlName="description" placeholder="Short details"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="save()" [disabled]="form.invalid">Save</ion-button>
+</ion-content>

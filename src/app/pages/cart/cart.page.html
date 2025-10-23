@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="cart.clear()" [disabled]="cart.items.length===0">Clear</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="cart.items.length; else empty">
+    <ion-item *ngFor="let i of cart.items">
+      <ion-label>
+        <div>{{ i.title }}</div>
+        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
+      </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="dec(i.productId, i.qty)" [disabled]="i.qty<=1">−</ion-button>
+        <ion-button disabled>{{ i.qty }}</ion-button>
+        <ion-button (click)="inc(i.productId, i.qty)">+</ion-button>
+        <ion-button color="medium" (click)="remove(i.productId)">Remove</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #empty>
+    <p>Your cart is empty.</p>
+  </ng-template>
+
+  <div class="ion-padding" *ngIf="cart.items.length">
+    <h2>Total: $ {{ cart.total }}</h2>
+    <ion-button expand="block" routerLink="/cart/checkout">Proceed to Checkout</ion-button>
+  </div>
+</ion-content>

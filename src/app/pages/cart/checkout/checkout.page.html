@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2>Pickup Details</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Phone</ion-label>
+      <ion-input [(ngModel)]="phone" placeholder="Your phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Pickup Time</ion-label>
+      <ion-input [(ngModel)]="pickupTime" placeholder="e.g., Today 5:30 PM"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <h3 class="ion-padding-top">Summary</h3>
+  <ion-list>
+    <ion-item *ngFor="let i of cart.items">
+      <ion-label>
+        <div>{{ i.title }}</div>
+        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <h2>Total: $ {{ cart.total }}</h2>
+  <ion-button expand="block" [disabled]="!cart.items.length" (click)="placeOrder()">Place Order</ion-button>
+</ion-content>

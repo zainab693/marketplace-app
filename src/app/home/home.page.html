@@ -1,20 +1,26 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Catalog</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cart">Cart <ion-badge>{{ cart.count }}</ion-badge></ion-button>
+      <ion-button *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid" [routerLink]="['/store', sid]">My Store</ion-button>
+      <ion-button *ngIf="!auth.user" routerLink="/login">Login</ion-button>
+      <ion-button *ngIf="auth.user" (click)="logout()">Logout</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="ion-padding">
+  <!-- filters will go here in next step -->
+  <div class="grid">
+    <app-product-card
+      *ngFor="let p of filtered"
+      [product]="p"
+      (add)="addToCart(p)">
+    </app-product-card>
   </div>
+
+  <ng-container *ngIf="!filtered.length">
+    <p>No products match your filters.</p>
+  </ng-container>
 </ion-content>

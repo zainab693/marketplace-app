@@ -6,7 +6,9 @@
       "price": 2,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "fruit"
     },
     {
       "id": "73fe",
@@ -14,7 +16,9 @@
       "price": 4,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "dairy"
     },
     {
       "id": "95c6",
@@ -22,7 +26,9 @@
       "price": 5,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "dairy"
     },
     {
       "id": "4584",
@@ -30,7 +36,9 @@
       "price": 2,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "fruit"
     },
     {
       "id": "484f",
@@ -38,7 +46,9 @@
       "price": 0.65,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "fruit"
     },
     {
       "id": "a174",
@@ -46,7 +56,9 @@
       "price": 3,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "bakery"
     },
     {
       "id": "2373",
@@ -54,7 +66,9 @@
       "price": 4,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "preserved fruit product"
     },
     {
       "id": "f32f",
@@ -62,7 +76,9 @@
       "price": 6,
       "description": "",
       "currency": "USD",
-      "storeId": "s1"
+      "storeId": "s1",
+      "images": [],
+      "category": "crafts"
     }
   ],
   "stores": [

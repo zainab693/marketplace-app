@@ -11,37 +11,69 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Search -->
-  <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
+  <ng-container *ngIf="loading">
+    <ion-list>
+      <ion-item *ngFor="let s of [1,2,3,4,5]">
+        <ion-label>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <!-- Search -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">
+          <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item>
+            <ion-label>Sort</ion-label>
+            <ion-select [(ngModel)]="sortBy" (ionChange)="search()">
+              <ion-select-option value="relevance">Relevance</ion-select-option>
+              <ion-select-option value="priceAsc">Price ↑</ion-select-option>
+              <ion-select-option value="priceDesc">Price ↓</ion-select-option>
+              <ion-select-option value="name">Name</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <!-- Categories -->
-  <div style="margin: 8px 0;">
-    <ion-chip
-      *ngFor="let c of categories"
-      [outline]="category !== c"
-      (click)="category = c; search()">
-      <ion-label>{{ c }}</ion-label>
-    </ion-chip>
-  </div>
+    <!-- Categories -->
+    <div style="margin: 8px 0;">
+      <ion-chip
+        *ngFor="let c of categories"
+        [outline]="category !== c"
+        (click)="category = c; search()">
+        <ion-label>{{ c }}</ion-label>
+      </ion-chip>
+    </div>
 
-  <!-- Price range -->
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Min Price</ion-label>
-      <ion-input type="number" [(ngModel)]="minPrice" (ionInput)="search()" placeholder="e.g., 2.50"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Max Price</ion-label>
-      <ion-input type="number" [(ngModel)]="maxPrice" (ionInput)="search()" placeholder="e.g., 30.00"></ion-input>
-    </ion-item>
-  </ion-list>
+    <!-- Price range -->
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Min Price</ion-label>
+        <ion-input type="number" [(ngModel)]="minPrice" (ionInput)="search()" placeholder="e.g., 2.50"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Max Price</ion-label>
+        <ion-input type="number" [(ngModel)]="maxPrice" (ionInput)="search()" placeholder="e.g., 30.00"></ion-input>
+      </ion-item>
+    </ion-list>
 
-  <!-- Cards -->
-  <div class="grid">
-    <app-product-card *ngFor="let p of filtered" [product]="p" (add)="addToCart(p)"></app-product-card>
-  </div>
+    <!-- Cards -->
+    <div class="grid">
+      <app-product-card *ngFor="let p of filtered" [product]="p" (add)="addToCart(p)"></app-product-card>
+    </div>
+  </ng-container>
 
   <ng-container *ngIf="!filtered.length">
-    <p>No products match your filters.</p>
+    <div style="text-align:center; opacity:0.7; padding:24px;">
+      <img src="/assets/placeholder.png" alt="" style="width:120px; opacity:0.5; margin-bottom:12px;">
+      <p>No products match your filters. Try clearing search or changing category/price.</p>
+    </div>
   </ng-container>
 </ion-content>

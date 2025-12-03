@@ -1,23 +1,35 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input [(ngModel)]="email" type="email" placeholder="vendor@example.com"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Password</ion-label>
-    <ion-input [(ngModel)]="password" type="password" placeholder="••••••••"></ion-input>
-  </ion-item>
+<ion-content>
+  <div class="page-shell">
+    <div class="centered-form section-card">
+      <div class="form-heading">
+        <p class="eyebrow">Welcome back</p>
+        <h2>Sign in</h2>
+        <p class="muted">Use a demo account or your own credentials.</p>
+      </div>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="email" type="email" placeholder="vendor@example.com"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input [(ngModel)]="password" type="password" placeholder="••••••••"></ion-input>
+      </ion-item>
 
-  <ion-button expand="block" (click)="submit()">Login</ion-button>
-  <p *ngIf="error" style="color:#d33; margin-top:8px;">{{ error }}</p>
+      <ion-button expand="block" (click)="submit()">Login</ion-button>
+      <p *ngIf="error" class="error">{{ error }}</p>
 
-  <div class="ion-padding-top">
-    <small>Try vendor@example.com / vendor123 or customer@example.com / customer123</small>
+      <div class="ion-padding-top">
+        <small>Try vendor@example.com / vendor123 or customer@example.com / customer123</small>
+      </div>
+    </div>
   </div>
 </ion-content>

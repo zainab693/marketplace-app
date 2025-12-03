@@ -1,23 +1,34 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Name</ion-label>
-    <ion-input [(ngModel)]="name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input [(ngModel)]="email" type="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Password</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
+<ion-content>
+  <div class="page-shell">
+    <div class="centered-form section-card">
+      <div class="form-heading">
+        <p class="eyebrow">Create account</p>
+        <h2>Join the marketplace</h2>
+      </div>
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
 
-  <ion-button expand="block" (click)="submit()">Create Account</ion-button>
-  <p *ngIf="error" style="color:#d33; margin-top:8px;">{{ error }}</p>
+      <ion-button expand="block" (click)="submit()">Create Account</ion-button>
+      <p *ngIf="error" class="error">{{ error }}</p>
+    </div>
+  </div>
 </ion-content>

@@ -1,0 +1,43 @@
+:host {
+	display: block;
+}
+
+.orders-list {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.order-card {
+	border-radius: var(--radius-md);
+	padding: 14px;
+	background: #ffffff;
+	border: 1px solid var(--border-soft);
+	box-shadow: 0 12px 28px rgba(12,15,30,0.06);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.order-card:hover {
+	transform: translateY(-3px);
+	box-shadow: var(--shadow-soft);
+}
+
+.order-id {
+	font-weight: 700;
+	margin-bottom: 4px;
+}
+
+.order-summary {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.total {
+	font-weight: 800;
+	color: var(--brand-700);
+}

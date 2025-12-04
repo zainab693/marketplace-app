@@ -7,7 +7,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/apples.jpg"
+      ],
       "category": "fruit"
     },
     {
@@ -17,7 +19,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/milk.jpeg"
+      ],
       "category": "dairy"
     },
     {
@@ -27,7 +31,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/eggs.jpg"
+      ],
       "category": "dairy"
     },
     {
@@ -37,7 +43,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/oranges.jpeg"
+      ],
       "category": "fruit"
     },
     {
@@ -47,7 +55,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/bananas.jpeg"
+      ],
       "category": "fruit"
     },
     {
@@ -57,7 +67,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/bread.webp"
+      ],
       "category": "bakery"
     },
     {
@@ -67,7 +79,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/strawberryjam.jpeg"
+      ],
       "category": "preserved fruit product"
     },
     {
@@ -77,7 +91,9 @@
       "description": "",
       "currency": "USD",
       "storeId": "s1",
-      "images": [],
+      "images": [
+        "assets/products/bracelet.webp"
+      ],
       "category": "crafts"
     }
   ],
@@ -395,6 +411,75 @@
       "total": 14,
       "status": "PLACED",
       "createdAt": "2025-10-14T19:47:09.330Z"
+    },
+    {
+      "id": "d903",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        },
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 1
+        },
+        {
+          "productId": "95c6",
+          "title": "Eggs",
+          "price": 5,
+          "qty": 2
+        }
+      ],
+      "total": 18,
+      "status": "PLACED",
+      "createdAt": "2025-11-26T10:02:16.053Z"
+    },
+    {
+      "id": "05f6",
+      "customerName": "",
+      "phone": "",
+      "pickupTime": "",
+      "items": [
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 4
+        }
+      ],
+      "total": 8,
+      "status": "PLACED",
+      "createdAt": "2025-11-26T11:59:07.917Z"
+    },
+    {
+      "id": "aed6",
+      "customerName": "Zainab",
+      "phone": "1223445678",
+      "pickupTime": "Tomorrow 8 am",
+      "items": [
+        {
+          "productId": "73fe",
+          "title": "Milk",
+          "price": 4,
+          "qty": 3
+        },
+        {
+          "productId": "4d75",
+          "title": "Apples",
+          "price": 2,
+          "qty": 2
+        }
+      ],
+      "total": 16,
+      "status": "PLACED",
+      "createdAt": "2025-11-28T16:17:27.887Z"
     }
   ],
   "users": [

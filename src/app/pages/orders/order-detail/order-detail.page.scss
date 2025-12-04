@@ -1,0 +1,32 @@
+:host {
+	display: block;
+}
+
+.order-detail-card {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.order-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+h3 {
+	margin-bottom: 6px;
+}
+
+.total-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 8px;
+}
+
+.total {
+	font-size: 1.3rem;
+	font-weight: 800;
+	color: var(--brand-700);
+}

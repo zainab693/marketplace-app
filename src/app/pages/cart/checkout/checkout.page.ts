@@ -11,8 +11,9 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonButtons,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../../../core/services/cart.service';
 import { OrderService } from '../../../core/services/order.service';
 
@@ -33,6 +34,8 @@ import { OrderService } from '../../../core/services/order.service';
     IonLabel,
     IonInput,
     IonButton,
+    IonButtons,
+    RouterModule,
   ],
 })
 export default class CheckoutPage {

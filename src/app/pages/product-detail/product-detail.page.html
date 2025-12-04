@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
+    <ion-title>{{ product?.title || 'Product' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cart" class="btn-primary">Cart</ion-button>
+      <ion-button routerLink="/profile" class="btn-link">Profile</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-shell">
+    <ng-container *ngIf="!loading && product; else loadingState">
+      <div class="section-card detail-card">
+        <div class="detail-grid">
+          <div class="image-area">
+            <img class="hero-img" [src]="activeImage" [alt]="product.title">
+            <div class="thumb-row">
+              <button *ngFor="let img of images" [class.active]="img === activeImage" (click)="setActiveImage(img)" type="button">
+                <img [src]="img" [alt]="product.title">
+              </button>
+            </div>
+          </div>
+          <div class="info">
+            <div class="eyebrow">{{ product.category || 'Product' }}</div>
+            <h1>{{ product.title }}</h1>
+            <div class="price">{{ product.price | currency:(product.currency || 'USD') }}</div>
+            <p class="muted">{{ product.description }}</p>
+            <div class="actions">
+              <ng-container *ngIf="qty > 0; else addDetail">
+                <ion-button fill="clear" (click)="decFromCart()">−</ion-button>
+                <div class="pill ghost-pill">{{ qty }}</div>
+                <ion-button (click)="addToCart()">+</ion-button>
+              </ng-container>
+              <ng-template #addDetail>
+                <ion-button expand="block" (click)="addToCart()">Add to cart</ion-button>
+              </ng-template>
+              <ion-button fill="clear" routerLink="/cart">View cart</ion-button>
+            </div>
+            <div class="badge-row">
+              <ion-badge color="primary">Ships fast</ion-badge>
+              <ion-badge color="secondary">Trusted seller</ion-badge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingState>
+      <div class="section-card detail-card loading-card">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

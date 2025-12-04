@@ -1,19 +1,41 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>My Orders</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngIf="items.length; else none">
-    <ion-item *ngFor="let o of items" [routerLink]="['/orders', o.id]">
-      <ion-label>
-        <div>Order #{{ o.id }} — {{ o.status }}</div>
-        <small>{{ o.createdAt | date:'medium' }} — Total: $ {{ o.total }}</small>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-  <ng-template #none>
-    <p>No orders yet.</p>
-  </ng-template>
+<ion-content>
+  <div class="page-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Orders</p>
+        <h2>Recent activity</h2>
+      </div>
+    </div>
+
+    <ng-container *ngIf="items.length; else none">
+      <div class="orders-list">
+        <div class="order-card" *ngFor="let o of items" [routerLink]="['/orders', o.id]">
+          <div class="order-meta">
+            <div class="order-id">Order #{{ o.id }}</div>
+            <div class="muted">{{ o.createdAt | date:'medium' }}</div>
+          </div>
+          <div class="order-summary">
+            <span class="pill ghost-pill">{{ o.status }}</span>
+            <div class="total">$ {{ o.total }}</div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #none>
+      <div class="empty-placeholder section-card">
+        <p>No orders yet.</p>
+        <ion-button routerLink="/">Browse products</ion-button>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>

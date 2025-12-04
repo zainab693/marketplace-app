@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Cart</ion-title>
     <ion-buttons slot="end">
       <ion-button color="danger" (click)="cart.clear()" [disabled]="cart.items.length===0">Clear</ion-button>
@@ -7,29 +10,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngIf="cart.items.length; else empty">
-    <ion-item *ngFor="let i of cart.items">
-      <ion-label>
-        <div>{{ i.title }}</div>
-        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
-      </ion-label>
+<ion-content>
+  <div class="page-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Your bag</p>
+        <h2>Ready to checkout</h2>
+      </div>
+      <ion-button color="danger" fill="outline" (click)="cart.clear()" [disabled]="cart.items.length===0">Clear all</ion-button>
+    </div>
 
-      <ion-buttons slot="end">
-        <ion-button (click)="dec(i.productId, i.qty)" [disabled]="i.qty<=1">−</ion-button>
-        <ion-button disabled>{{ i.qty }}</ion-button>
-        <ion-button (click)="inc(i.productId, i.qty)">+</ion-button>
-        <ion-button color="medium" (click)="remove(i.productId)">Remove</ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
+    <ng-container *ngIf="cart.items.length; else empty">
+      <div class="cart-grid">
+        <div class="section-card cart-list">
+        <div class="cart-item" *ngFor="let i of cart.items">
+          <ion-img [src]="i.image || '/assets/placeholder.png'" alt="" class="thumb"></ion-img>
+          <div class="meta">
+            <div class="title">{{ i.title }}</div>
+            <div class="muted price-line">$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</div>
+          </div>
+            <div class="controls">
+              <ion-button size="small" (click)="dec(i.productId, i.qty)" [disabled]="i.qty<=1">−</ion-button>
+              <span class="pill ghost-pill">{{ i.qty }}</span>
+              <ion-button size="small" (click)="inc(i.productId, i.qty)">+</ion-button>
+              <ion-button fill="clear" color="medium" (click)="remove(i.productId)">Remove</ion-button>
+            </div>
+          </div>
+        </div>
 
-  <ng-template #empty>
-    <p>Your cart is empty.</p>
-  </ng-template>
+        <div class="section-card cart-summary" *ngIf="cart.items.length">
+          <div class="summary-row">
+            <div>
+              <div class="muted">Total</div>
+              <div class="total">$ {{ cart.total }}</div>
+            </div>
+            <ion-button expand="block" routerLink="/cart/checkout">Proceed to Checkout</ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
-  <div class="ion-padding" *ngIf="cart.items.length">
-    <h2>Total: $ {{ cart.total }}</h2>
-    <ion-button expand="block" routerLink="/cart/checkout">Proceed to Checkout</ion-button>
+    <ng-template #empty>
+      <div class="empty-placeholder section-card">
+        <p>Your cart is empty.</p>
+        <ion-button routerLink="/">Browse products</ion-button>
+      </div>
+    </ng-template>
   </div>
 </ion-content>

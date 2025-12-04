@@ -10,6 +10,7 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonButtons,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -30,6 +31,7 @@ import { AuthService } from '../../../core/services/auth.service';
     IonLabel,
     IonInput,
     IonButton,
+    IonButtons,
   ],
 })
 export default class LoginPage {

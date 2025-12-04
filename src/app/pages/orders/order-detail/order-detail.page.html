@@ -1,23 +1,41 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/orders">Orders</ion-button>
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Order #{{ order?.id }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" *ngIf="order; else loading">
-  <p>Status: {{ order.status }}</p>
-  <p>Placed: {{ order.createdAt | date:'medium' }}</p>
-  <h3>Items</h3>
-  <ion-list>
-    <ion-item *ngFor="let i of order.items">
-      <ion-label>
-        <div>{{ i.title }}</div>
-        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content *ngIf="order; else loading">
+  <div class="page-shell">
+    <div class="section-card order-detail-card">
+      <div class="order-header">
+        <div>
+          <p class="eyebrow">Order</p>
+          <h2>#{{ order.id }}</h2>
+        </div>
+        <div class="pill ghost-pill">{{ order.status }}</div>
+      </div>
+      <p class="muted">Placed: {{ order.createdAt | date:'medium' }}</p>
 
-  <h2>Total: $ {{ order.total }}</h2>
+      <h3>Items</h3>
+      <ion-list>
+        <ion-item *ngFor="let i of order.items">
+          <ion-label>
+            <div>{{ i.title }}</div>
+            <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="total-row">
+        <div class="muted">Total</div>
+        <div class="total">$ {{ order.total }}</div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 
 <ng-template #loading>

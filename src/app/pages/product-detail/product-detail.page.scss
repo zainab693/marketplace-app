@@ -1,0 +1,83 @@
+:host {
+	display: block;
+}
+
+.detail-card {
+	padding: 16px;
+}
+
+.detail-grid {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 16px;
+	align-items: start;
+}
+
+.image-area {
+	display: grid;
+	gap: 10px;
+}
+
+.hero-img {
+	width: 100%;
+	border-radius: var(--radius-lg);
+	object-fit: cover;
+	box-shadow: 0 16px 36px rgba(12,15,30,0.08);
+}
+
+.thumb-row {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+.thumb-row button {
+	border: 1px solid var(--border-soft);
+	border-radius: 12px;
+	padding: 4px;
+	background: #fff;
+	cursor: pointer;
+}
+.thumb-row img {
+	width: 70px;
+	height: 70px;
+	object-fit: cover;
+	border-radius: 8px;
+	display: block;
+}
+.thumb-row button.active {
+	border-color: var(--brand-500);
+	box-shadow: 0 10px 22px rgba(46,143,85,0.14);
+}
+
+.info h1 {
+	margin: 6px 0;
+}
+.price {
+	font-size: 1.4rem;
+	font-weight: 800;
+	color: var(--brand-700);
+	margin-bottom: 8px;
+}
+.actions {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+.badge-row {
+	display: flex;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.loading-card {
+	display: grid;
+	place-items: center;
+	min-height: 260px;
+}
+
+@media (max-width: 900px) {
+	.detail-grid { grid-template-columns: 1fr; }
+	.actions { width: 100%; }
+	.actions ion-button { flex: 1 1 auto; }
+}

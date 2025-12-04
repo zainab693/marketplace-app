@@ -5,9 +5,7 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
+  IonButtons,
 } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { OrderService } from '../../core/services/order.service';
@@ -24,9 +22,7 @@ import { OrderService } from '../../core/services/order.service';
     IonToolbar,
     IonTitle,
     IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
+    IonButtons,
   ],
 })
 export default class OrdersPage {

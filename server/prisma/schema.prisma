@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Store {
+  id      String   @id @default(cuid())
+  name    String
+  products Product[]
+  users    User[]
+}
+
+model Product {
+  id          String  @id @default(cuid())
+  storeId     String
+  store       Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  price       Float   @default(0)
+  currency    String  @default("INR")
+  images      String  @default("[]") // JSON string array for simplicity
+  category    String?
+  createdAt   DateTime @default(now())
+}
+
+model User {
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String   // dev only (plain). Replace with hash later.
+  roles    String   @default("customer") // "customer" or "vendor"
+  storeId  String?
+  store    Store?   @relation(fields: [storeId], references: [id])
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   User     @relation(fields: [customerId], references: [id])
+  total      Float
+  status     String   @default("PLACED")
+  pickupTime String?
+  createdAt  DateTime @default(now())
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  title     String
+  price     Float
+  qty       Int
+}

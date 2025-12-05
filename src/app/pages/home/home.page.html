@@ -1,79 +1,189 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Catalog</ion-title>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/cart">Cart <ion-badge>{{ cart.count }}</ion-badge></ion-button>
-      <ion-button *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid" [routerLink]="['/store', sid]">My Store</ion-button>
-      <ion-button *ngIf="!auth.user" routerLink="/login">Login</ion-button>
-      <ion-button *ngIf="auth.user" (click)="logout()">Logout</ion-button>
-    </ion-buttons>
+  <ion-toolbar class="nav-toolbar">
+    <div class="nav-bar">
+      <div class="nav-brand" routerLink="/">
+        <span class="brand-title">Catalog</span>
+        <small class="build-tag">{{ buildTag | slice:0:19 }}</small>
+      </div>
+      <div class="nav-links">
+        <ion-button class="nav-link" color="primary" fill="clear" shape="round" routerLink="/">Home</ion-button>
+        <ion-button class="nav-link" color="primary" fill="clear" shape="round" routerLink="/profile">Profile</ion-button>
+        <ion-button *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid" class="nav-link" color="primary" fill="clear" shape="round" [routerLink]="['/store', sid]">My Store</ion-button>
+        <ion-button *ngIf="!auth.user" class="nav-link" color="primary" fill="clear" shape="round" routerLink="/login">Login</ion-button>
+        <ion-button *ngIf="auth.user" class="nav-link" color="primary" fill="clear" shape="round" routerLink="/logout">Logout</ion-button>
+        <ion-button routerLink="/cart" class="cart-btn nav-cart" fill="solid" shape="round">
+          <span class="cart-icon" aria-hidden="true">🛒</span>
+          <span>Cart</span>
+          <ion-badge class="cart-badge">{{ cart.count }}</ion-badge>
+        </ion-button>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ng-container *ngIf="loading">
-    <ion-list>
-      <ion-item *ngFor="let s of [1,2,3,4,5]">
-        <ion-label>
-          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-  </ng-container>
-  <ng-container *ngIf="!loading">
-    <!-- Search -->
-    <ion-grid>
-      <ion-row>
-        <ion-col size="8">
-          <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
-        </ion-col>
-        <ion-col size="4">
-          <ion-item>
-            <ion-label>Sort</ion-label>
-            <ion-select [(ngModel)]="sortBy" (ionChange)="search()">
-              <ion-select-option value="relevance">Relevance</ion-select-option>
-              <ion-select-option value="priceAsc">Price ↑</ion-select-option>
-              <ion-select-option value="priceDesc">Price ↓</ion-select-option>
-              <ion-select-option value="name">Name</ion-select-option>
-            </ion-select>
+<ion-content>
+  <div class="page-shell">
+    <ng-container *ngIf="loading">
+      <div class="section-card">
+        <ion-list>
+          <ion-item *ngFor="let s of [1,2,3,4,5,6]">
+            <ion-label>
+              <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+            </ion-label>
           </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+        </ion-list>
+      </div>
+    </ng-container>
 
-    <!-- Categories -->
-    <div style="margin: 8px 0;">
-      <ion-chip
-        *ngFor="let c of categories"
-        [outline]="category !== c"
-        (click)="category = c; search()">
-        <ion-label>{{ c }}</ion-label>
-      </ion-chip>
-    </div>
+    <ng-container *ngIf="!loading">
+      <section class="app-heading-banner fade-in">
+        <div class="heading-inner">
+          <div class="heading-orb"></div>
+          <div class="heading-text">
+            <p class="heading-kicker">Signature marketplace</p>
+            <div class="app-wordmark">ARTISANAL EXPRESS</div>
+          </div>
+          <div class="heading-pill">Freshly curated · Fast checkout</div>
+        </div>
+      </section>
 
-    <!-- Price range -->
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Min Price</ion-label>
-        <ion-input type="number" [(ngModel)]="minPrice" (ionInput)="search()" placeholder="e.g., 2.50"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Max Price</ion-label>
-        <ion-input type="number" [(ngModel)]="maxPrice" (ionInput)="search()" placeholder="e.g., 30.00"></ion-input>
-      </ion-item>
-    </ion-list>
+      <section class="hero-card section-card fade-in">
+        <div class="hero-copy">
+          <p class="eyebrow">Marketplace</p>
+          <h1>Fresh picks, curated for you.</h1>
+          <p class="lede">Browse fast, filter precisely, and drop items into your cart without losing your place.</p>
+          <div class="hero-meta">
+            <div class="stat">
+              <div class="stat-value">{{ filtered.length }}</div>
+              <div class="stat-label">Products</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">{{ categories.length }}</div>
+              <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">{{ cart.count }}</div>
+              <div class="stat-label">In cart</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="bubble bubble-a"></div>
+          <div class="bubble bubble-b"></div>
+          <div class="card-peek">
+            <div class="peek-title">Quick filters</div>
+            <div class="peek-row">
+              <button *ngFor="let q of quickFilters" (click)="onQuickSelect(q.value)" class="pill quick-pill" [class.active]="quickFilter===q.value">
+                {{ q.label }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Cards -->
-    <div class="grid">
-      <app-product-card *ngFor="let p of filtered" [product]="p" (add)="addToCart(p)"></app-product-card>
-    </div>
-  </ng-container>
+      <section class="filters-card section-card fade-in">
+        <div class="filters-grid">
+          <div class="filters-left">
+            <label class="filter-label">Search</label>
+            <div class="search-row">
+              <ion-searchbar
+                class="hero-search"
+                placeholder="Search products"
+                [(ngModel)]="query"
+                (ngModelChange)="onSearchChange($event)"
+                (ionClear)="search()"
+                enterkeyhint="search"></ion-searchbar>
+              <ion-button class="search-button" color="primary" shape="round" (click)="search()">
+                Search
+              </ion-button>
+            </div>
+          </div>
+          <div class="filters-right">
+            <label class="filter-label">Sort</label>
+            <div class="sort-control">
+              <ion-button fill="outline" size="small" (click)="$event.stopPropagation(); toggleSortPanel()">{{ getSortLabel() }}</ion-button>
+              <div class="sort-panel" *ngIf="showSortPanel" (click)="$event.stopPropagation()">
+                <div class="sort-options">
+                  <label class="sort-row" *ngFor="let o of sortOptions">
+                    <input type="radio" name="sortOption" [value]="o.value" [(ngModel)]="tempSort">
+                    <span class="sort-label">{{ o.label }}</span>
+                  </label>
+                </div>
+                <div class="sort-actions">
+                  <ion-button fill="clear" size="small" (click)="cancelSort()">Cancel</ion-button>
+                  <ion-button size="small" (click)="applySort()">OK</ion-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <ng-container *ngIf="!filtered.length">
-    <div style="text-align:center; opacity:0.7; padding:24px;">
-      <img src="/assets/placeholder.png" alt="" style="width:120px; opacity:0.5; margin-bottom:12px;">
-      <p>No products match your filters. Try clearing search or changing category/price.</p>
-    </div>
-  </ng-container>
+        <div class="quick-filters-row">
+          <div class="filter-label">Quick filters</div>
+          <div class="quick-filters">
+            <button
+              *ngFor="let q of quickFilters"
+              type="button"
+              class="quick-filter-card"
+              [class.active]="quickFilter === q.value"
+              (click)="onQuickSelect(q.value)">
+              <div class="q-label">{{ q.label }}</div>
+              <small class="muted">{{ q.description }}</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="chips-row">
+          <ion-button
+            class="chip-button category-button"
+            *ngFor="let c of categories"
+            [fill]="category === c ? 'solid' : 'clear'"
+            color="primary"
+            size="small"
+            shape="round"
+            (click)="onChipClick(c); category = c; search()"
+            (keydown.enter)="onChipClick(c); category = c; search()"
+            aria-pressed="{{ category === c }}">
+            {{ c }}
+          </ion-button>
+        </div>
+
+        <div class="price-range">
+          <div class="field">
+            <label>Min Price</label>
+            <ion-input type="number" [(ngModel)]="minPrice" (ionInput)="search()" placeholder="e.g., 2.50"></ion-input>
+          </div>
+          <div class="field">
+            <label>Max Price</label>
+            <ion-input type="number" [(ngModel)]="maxPrice" (ionInput)="search()" placeholder="e.g., 30.00"></ion-input>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-section fade-in">
+        <div class="section-heading">
+          <h2>Catalog</h2>
+          <div class="pill ghost-pill">Sorted by {{ getSortLabel() }}</div>
+          <div class="pill ghost-pill">Quick: {{ getQuickLabel() }}</div>
+        </div>
+        <div class="grid">
+          <app-product-card
+            *ngFor="let p of filtered"
+            [product]="p"
+            [qty]="getQty(p.id)"
+            (add)="incFromCart(p)"
+            (decrement)="decFromCart(p)"
+            (view)="openProduct(p)"></app-product-card>
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngIf="!filtered.length && !loading">
+      <div class="empty-state section-card">
+        <img src="/assets/placeholder.png" alt="" class="empty-illustration">
+        <p>No products match your filters. Clear search or try another range.</p>
+      </div>
+    </ng-container>
+  </div>
 </ion-content>

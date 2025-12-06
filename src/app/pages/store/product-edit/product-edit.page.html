@@ -1,28 +1,50 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/store', storeId]">Back to store</ion-button>
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Edit Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list [formGroup]="form">
-    <ion-item>
-      <ion-label position="stacked">Title</ion-label>
-      <ion-input formControlName="title"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Price</ion-label>
-      <ion-input type="number" formControlName="price"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Currency</ion-label>
-      <ion-input formControlName="currency"></ion-input>
-    </ion-item>
-    <ion-item>
+<ion-content>
+  <div class="page-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Store</p>
+        <h2>Update product</h2>
+      </div>
+    </div>
+
+    <div class="section-card form-card">
+      <ion-list [formGroup]="form">
+        <ion-item>
+          <ion-label position="stacked">Title</ion-label>
+          <ion-input formControlName="title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Price</ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Currency</ion-label>
+          <ion-input formControlName="currency"></ion-input>
+        </ion-item>
+        <ion-item>
       <ion-label position="stacked">Description</ion-label>
       <ion-input formControlName="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Image</ion-label>
+      <input type="file" accept="image/*" (change)="onFileChange($event)" />
+      <div class="preview" *ngIf="imagePreview || currentImage">
+        <img [src]="imagePreview || currentImage" alt="preview">
+      </div>
     </ion-item>
   </ion-list>
 
   <ion-button expand="block" (click)="save()" [disabled]="form.invalid">Update</ion-button>
+    </div>
+  </div>
 </ion-content>

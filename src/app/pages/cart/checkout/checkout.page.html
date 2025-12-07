@@ -1,36 +1,59 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/cart">Back to cart</ion-button>
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Checkout</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h2>Pickup Details</h2>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Phone</ion-label>
-      <ion-input [(ngModel)]="phone" placeholder="Your phone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Pickup Time</ion-label>
-      <ion-input [(ngModel)]="pickupTime" placeholder="e.g., Today 5:30 PM"></ion-input>
-    </ion-item>
-  </ion-list>
+<ion-content>
+  <div class="page-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Pickup</p>
+        <h2>Confirm your details</h2>
+      </div>
+    </div>
 
-  <h3 class="ion-padding-top">Summary</h3>
-  <ion-list>
-    <ion-item *ngFor="let i of cart.items">
-      <ion-label>
-        <div>{{ i.title }}</div>
-        <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+    <div class="checkout-grid">
+      <div class="section-card">
+        <h3>Pickup Details</h3>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Phone</ion-label>
+            <ion-input [(ngModel)]="phone" placeholder="Your phone"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Pickup Time</ion-label>
+            <ion-input [(ngModel)]="pickupTime" placeholder="e.g., Today 5:30 PM"></ion-input>
+          </ion-item>
+        </ion-list>
+      </div>
 
-  <h2>Total: $ {{ cart.total }}</h2>
-  <ion-button expand="block" [disabled]="!cart.items.length" (click)="placeOrder()">Place Order</ion-button>
+      <div class="section-card">
+        <h3>Summary</h3>
+        <ion-list>
+          <ion-item *ngFor="let i of cart.items">
+            <ion-label>
+              <div>{{ i.title }}</div>
+              <small>$ {{ i.price }} × {{ i.qty }} = $ {{ i.price * i.qty }}</small>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div class="total-row">
+          <div class="muted">Total</div>
+          <div class="total">$ {{ cart.total }}</div>
+        </div>
+
+        <ion-button expand="block" [disabled]="!cart.items.length" (click)="placeOrder()">Place Order</ion-button>
+      </div>
+    </div>
+  </div>
 </ion-content>

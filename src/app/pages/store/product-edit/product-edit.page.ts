@@ -11,8 +11,9 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonButtons,
 } from '@ionic/angular/standalone';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductService } from '../../../core/services/product.service';
 
 @Component({
@@ -32,6 +33,8 @@ import { ProductService } from '../../../core/services/product.service';
     IonLabel,
     IonInput,
     IonButton,
+    IonButtons,
+    RouterModule,
   ],
 })
 export default class ProductEditPage {
@@ -47,17 +50,44 @@ export default class ProductEditPage {
     price: [0, [Validators.required, Validators.min(0)]],
     currency: ['INR'],
     description: [''],
+    images: [[] as string[]],
   });
+  imageData: string | null = null;
+  imageName: string | null = null;
+  imagePreview: string | null = null;
+  currentImage: string | null = null;
 
   ngOnInit() {
     this.storeId = this.route.snapshot.paramMap.get('storeId') || 's1';
     this.id = this.route.snapshot.paramMap.get('id') || '';
-    this.ps.get(this.id).subscribe((p) => this.form.patchValue(p));
+    this.ps.get(this.id).subscribe((p) => {
+      this.form.patchValue(p);
+      const imgs = Array.isArray(p.images) ? p.images : (() => { try { return JSON.parse(p.images || '[]'); } catch { return []; } })();
+      this.currentImage = imgs?.[0] || null;
+    });
+  }
+
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+    this.imageName = file.name;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageData = reader.result as string;
+      this.imagePreview = this.imageData;
+    };
+    reader.readAsDataURL(file);
   }
 
   save() {
+    const dto: any = this.form.value;
+    if (this.imageData && this.imageName) {
+      dto.imageData = this.imageData;
+      dto.imageName = this.imageName;
+    }
     this.ps
-      .update(this.id, this.form.value)
+      .update(this.id, dto)
       .subscribe(() => this.router.navigate(['/store', this.storeId]));
   }
 }

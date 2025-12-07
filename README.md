@@ -1,8 +1,8 @@
-# Marketplace App
+# Artisanal Express Marketplace App
 
 Ionic + Angular marketplace front end with a mock JSON API. Browse products, filter and sort them, manage a cart, check out, and (as a vendor) create or edit store inventory. Data persists locally for the cart and via `json-server` for the mock backend.
 
-## Tech stack
+## Tech Stack
 - Angular 20 + Ionic 8 (standalone components, router guards, HttpClient)
 - Capacitor Preferences for lightweight auth persistence; localStorage for carts
 - Mock API via `json-server` (`api/db.json`) behind an Angular proxy at `/api`
@@ -10,13 +10,34 @@ Ionic + Angular marketplace front end with a mock JSON API. Browse products, fil
 
 ## Features
 - Product catalog with search, category chips, min/max price filters, quick filters (trending, budget, premium, recent), and sort (relevance, price, name).
+
+<img src="screenshots/Screenshot%202025-12-07%20125330.png" width="2000">
+
+
 - Product detail page with gallery, add/remove from cart, and quantity syncing.
+
+<img src="screenshots/Screenshot 2025-12-07 131822.png" width="2000">
+
 - Cart page with quantity controls, price totals, and checkout flow that posts orders to `/api/orders`.
+
+<img src="screenshots/Screenshot 2025-12-07 125453.png" width="2000">
+
 - Auth: register/login/logout, role-based guards, Capacitor-stored session; cart is stored per-user and survives logout.
+
+<img src="screenshots/Screenshot 2025-12-07 125412.png" width="2000">
+
 - Vendor tools: store dashboard listing products, create/edit products (with optional image upload), delete products; guarded for `vendor` role.
+
+<img src="screenshots/Screenshot 2025-12-07 125801.png" width="2000">
+
+<img src="screenshots/Screenshot 2025-12-07 125813.png" width="2000">
+
 - Order history + order detail for authenticated users.
 
-## Getting started
+<img src="screenshots/Screenshot 2025-12-07 132958.png" width="2000">
+
+
+## Getting Started
 1) Install Node 18+ and npm.  
 2) Install dependencies:
 ```bash
@@ -30,32 +51,30 @@ npm run dev
 - `npm run web` runs `ionic serve` with `proxy.conf.json` so the app calls `/api/...` and hits the mock server.
 If you do not have the Ionic CLI, install it or use `npx ionic serve -- --proxy-config proxy.conf.json`.
 
-![alt text](screenshots/b35979418efaa440cb428c286febfb9f.png)
 
-
-## Useful scripts
+## Useful Scripts
 - `npm start` / `ng serve` – Angular dev server (no proxy).
 - `npm run build` – production build.
 - `npm test` – Angular unit tests.
 - `npm run lint` – ESLint.
 
-## API & data
+## API & Data
 - Mock data lives in `api/db.json` (`products`, `orders`, `users`, `stores`). Edit it and restart `npm run api` to change defaults.
 - Proxy (`proxy.conf.json`) rewrites `/api` → `http://localhost:3333`.
 
-### Default login accounts
+### Default Login Accounts
 - Vendor: `vendor@example.com` / `vendor123` (store `s1`)
 - Customer: `customer@example.com` / `customer123`
 Additional demo users are also seeded in `api/db.json`.
 
-## Project structure
+## Project Structure
 - `src/app/pages/` – feature pages (home, auth, cart, checkout, orders, product detail, store tools).
 - `src/app/core/services/` – auth, product, order, and cart services.
 - `src/app/shared/components/product-card/` – reusable product card.
 - `api/db.json` – mock backend data.
 - `server/` – Prisma schema + seed (`prisma/seed.ts`) for an eventual Express API (not required for the mock flow).
 
-## Backend (optional)
+## Backend (Optional)
 The `server/` folder contains a Prisma + SQLite schema. To seed the database for experimentation:
 ```bash
 cd server

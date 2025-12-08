@@ -1,11 +1,38 @@
-<ion-card class="neo">
-  <ion-img [src]="product?.images?.[0] || '/assets/placeholder.png'"></ion-img>
-  <ion-card-header>
-    <ion-card-title>{{ product?.title }}</ion-card-title>
-    <div>{{ product?.price | currency: (product?.currency || 'USD') }}</div>
-  </ion-card-header>
+<ion-card class="neo product-card" (click)="onView()">
+  <div class="image-wrap">
+    <ion-img class="product-card-image" [src]="imageSrc" (ionImgDidLoad)="onImgLoad()"></ion-img>
+    <div class="shimmer" *ngIf="!imageLoaded"></div>
+    <div class="image-overlay">
+      <span class="pill pill-light">{{ product?.category || 'Featured' }}</span>
+      <span class="price-badge">{{ product?.price | currency: (product?.currency || 'USD') }}</span>
+    </div>
+    <ng-container *ngIf="qty > 0; else addOnly">
+      <div class="qty-floating" (click)="$event.stopPropagation()">
+        <ion-button fill="clear" size="small" (click)="onDecClicked($event)" aria-label="Decrease">
+          <span aria-hidden="true">−</span>
+        </ion-button>
+        <div class="qty-chip">{{ qty }}</div>
+        <ion-button size="small" (click)="onAddClicked($event)" aria-label="Increase">
+          <span aria-hidden="true">+</span>
+        </ion-button>
+      </div>
+    </ng-container>
+    <ng-template #addOnly>
+      <ion-button fill="solid" color="primary" class="add-floating" (click)="onAddClicked($event)" aria-label="Add {{ product?.title }}">
+        <span aria-hidden="true">+</span>
+      </ion-button>
+    </ng-template>
+  </div>
+
   <ion-card-content>
-    <p>{{ product?.description }}</p>
-    <ion-button expand="block" (click)="add.emit()">Add to Cart</ion-button>
+    <div class="title-row">
+      <div class="title">{{ product?.title }}</div>
+      <div class="mini-tag">{{ product?.currency || 'USD' }}</div>
+    </div>
+    <p class="muted description">{{ product?.description }}</p>
+    <div class="meta">
+      <div class="pill subtle-pill">In {{ product?.category || 'assorted' }}</div>
+      <div class="price-inline">{{ product?.price | currency: (product?.currency || 'USD') }}</div>
+    </div>
   </ion-card-content>
 </ion-card>

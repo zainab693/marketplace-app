@@ -95,6 +95,17 @@
         "assets/products/bracelet.webp"
       ],
       "category": "crafts"
+    },
+    {
+      "id": "8f71",
+      "title": "Necklace",
+      "price": 4,
+      "description": "",
+      "currency": "USD",
+      "images": [
+        "assets/products/necklace.webp"
+      ],
+      "storeId": "s1"
     }
   ],
   "stores": [

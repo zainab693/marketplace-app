@@ -16,8 +16,12 @@ export interface AppUser {
 export class AuthService {
   private _user$ = new BehaviorSubject<AppUser | null>(null);
   user$ = this._user$.asObservable();
+  // promise that resolves when initial restore is complete
+  private _readyPromise: Promise<void>;
+  private _readyResolve!: () => void;
 
   constructor(private http: HttpClient) {
+    this._readyPromise = new Promise((res) => (this._readyResolve = res));
     this.restore();
   }
 
@@ -40,10 +44,12 @@ export class AuthService {
       .pipe(
         map((list) => {
           if (!list.length) throw new Error('Invalid credentials');
-          const u = list[0];
-          this._user$.next(u);
+          // avoid storing sensitive fields like password
+          const raw = list[0] as any;
+          const { password: _pw, ...u } = raw;
+          this._user$.next(u as AppUser);
           Preferences.set({ key: 'auth_user', value: JSON.stringify(u) });
-          return u;
+          return u as AppUser;
         })
       );
   }
@@ -59,7 +65,26 @@ export class AuthService {
   }
 
   private async restore() {
-    const saved = await Preferences.get({ key: 'auth_user' });
-    if (saved.value) this._user$.next(JSON.parse(saved.value));
+    try {
+      const saved = await Preferences.get({ key: 'auth_user' });
+      if (saved.value) {
+        try {
+          const parsed = JSON.parse(saved.value) as AppUser;
+          this._user$.next(parsed);
+        } catch (e) {
+          // corrupt saved value, clear it
+          await Preferences.remove({ key: 'auth_user' });
+          this._user$.next(null);
+        }
+      }
+    } finally {
+      // mark ready regardless of errors
+      if (this._readyResolve) this._readyResolve();
+    }
+  }
+
+  // allow callers (like guards) to wait for initial restore
+  ready() {
+    return this._readyPromise;
   }
 }

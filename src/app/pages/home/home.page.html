@@ -86,7 +86,18 @@
         <div class="filters-grid">
           <div class="filters-left">
             <label class="filter-label">Search</label>
-            <ion-searchbar placeholder="Search products" [(ngModel)]="query" (ionInput)="search()"></ion-searchbar>
+            <div class="search-row">
+              <ion-searchbar
+                class="hero-search"
+                placeholder="Search products"
+                [(ngModel)]="query"
+                (ngModelChange)="onSearchChange($event)"
+                (ionClear)="search()"
+                enterkeyhint="search"></ion-searchbar>
+              <ion-button class="search-button" color="primary" shape="round" (click)="search()">
+                Search
+              </ion-button>
+            </div>
           </div>
           <div class="filters-right">
             <label class="filter-label">Sort</label>

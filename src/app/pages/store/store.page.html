@@ -1,26 +1,46 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>My Store ({{ storeId }})</ion-title>
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/store', storeId, 'products', 'new']">New Product</ion-button>
+      <ion-button [routerLink]="['/store', storeId, 'products', 'new']" class="btn-primary">New Product</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list *ngIf="items.length; else none">
-    <ion-item *ngFor="let p of items">
-      <ion-label>
-        <div>{{ p.title }}</div>
-        <small>$ {{ p.price }}</small>
-      </ion-label>
-      <ion-buttons slot="end">
-        <ion-button [routerLink]="['/store', storeId, 'products', p.id, 'edit']">Edit</ion-button>
-        <ion-button color="danger" (click)="delete(p.id)">Delete</ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
-  <ng-template #none>
-    <p>No products yet.</p>
-  </ng-template>
+<ion-content>
+  <div class="page-shell">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Storefront</p>
+        <h2>Products</h2>
+      </div>
+      <ion-button [routerLink]="['/store', storeId, 'products', 'new']">Add product</ion-button>
+    </div>
+
+    <ng-container *ngIf="items.length; else none">
+      <div class="store-grid">
+        <div class="store-card section-card" *ngFor="let p of items">
+          <div class="store-card-header">
+            <div class="title">{{ p.title }}</div>
+            <div class="pill ghost-pill">{{ p.currency || 'USD' }}</div>
+          </div>
+          <p class="muted">$ {{ p.price }}</p>
+          <div class="store-actions">
+            <ion-button size="small" [routerLink]="['/store', storeId, 'products', p.id, 'edit']" class="btn-primary">Edit</ion-button>
+            <ion-button size="small" fill="outline" color="danger" (click)="delete(p.id)">Delete</ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #none>
+      <div class="empty-placeholder section-card">
+        <p>No products yet.</p>
+        <ion-button [routerLink]="['/store', storeId, 'products', 'new']">Create first product</ion-button>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>

@@ -22,6 +22,12 @@ export const routes: Routes = [
       import('./pages/auth/register/register.page').then((m) => m.default),
   },
   {
+    path: 'logout',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/auth/logout/logout.page').then((m) => m.default),
+  },
+  {
     path: 'profile',
     canActivate: [authGuard],
     loadComponent: () =>
@@ -71,6 +77,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/orders/order-detail/order-detail.page').then(
+        (m) => m.default
+      ),
+  },
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./pages/product-detail/product-detail.page').then(
         (m) => m.default
       ),
   },

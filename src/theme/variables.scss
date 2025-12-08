@@ -1,2 +1,59 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// Theme variables
+// A clean, warm palette and modern typography for the marketplace app.
+// See Ionic theming docs: https://ionicframework.com/docs/theming
+
+:root {
+	/* Base palette: fresh mint with deeper contrast */
+	--brand-base: #BFEFD6;
+	--brand-500: #55C08A;
+	--brand-600: #3AA86A;
+	--brand-700: #2E8F55;
+	--brand-900: #0f3a29;
+
+	--accent-100: #E6FFF5;
+	--accent-200: #D6FCE9;
+	--accent-300: #CFF7E1;
+	--accent-ink: #0f172a;
+	--muted-600: #5f6b80;
+	--muted-500: #74839b;
+
+	--ion-color-primary: var(--brand-500);
+	--ion-color-primary-contrast: #ffffff;
+	--ion-color-primary-shade: var(--brand-600);
+	--ion-color-secondary: #7AD3FF;
+	--ion-color-tertiary: #FFD6E0;
+	--ion-color-success: #10B981;
+	--ion-color-warning: #F59E0B;
+	--ion-color-danger: #EF4444;
+
+	/* Gradient tokens */
+	--gradient-primary: linear-gradient(135deg, rgba(85,192,138,0.16), rgba(122,211,255,0.10));
+	--gradient-toolbar: linear-gradient(90deg, rgba(85,192,138,0.12), rgba(46,143,85,0.10));
+	--gradient-card: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(244,252,248,0.92));
+
+	/* Backgrounds */
+	--ion-background-color: #f5fbf8;
+	--ion-card-background: #ffffff;
+
+	/* Typography */
+	--ion-font-family: 'Space Grotesk', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+	--ion-font-size-base: 16px;
+
+	/* Component sizes and subtle UI */
+	--ion-toolbar-background: transparent;
+	--ion-toolbar-color: var(--ion-color-primary);
+	--ion-tab-bar-background: #ffffff;
+
+	/* Elevation */
+	--shadow-soft: 0 12px 28px rgba(12, 15, 30, 0.08);
+	--shadow-sm: 0 6px 16px rgba(12, 15, 30, 0.06);
+	--shadow-glow: 0 20px 60px rgba(46, 143, 85, 0.14);
+
+	/* Radius */
+	--radius-lg: 18px;
+	--radius-md: 14px;
+	--radius-sm: 10px;
+}
+
+/* Expressive, modern type */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap');

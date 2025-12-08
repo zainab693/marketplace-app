@@ -5,11 +5,10 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonItem,
-  IonLabel,
   IonButton,
+  IonButtons,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -23,17 +22,11 @@ import { AuthService } from '../../core/services/auth.service';
     IonToolbar,
     IonTitle,
     IonContent,
-    IonItem,
-    IonLabel,
     IonButton,
+    IonButtons,
+    RouterModule,
   ],
 })
 export default class ProfilePage {
   auth = inject(AuthService);
-  private router = inject(Router);
-
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['/']);
-  }
 }

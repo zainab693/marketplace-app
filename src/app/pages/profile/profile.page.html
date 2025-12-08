@@ -1,21 +1,39 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">Home</ion-button>
+    </ion-buttons>
     <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ng-container *ngIf="auth.user; else guest">
-    <ion-item><ion-label><b>Name:</b> {{ auth.user.name }}</ion-label></ion-item>
-    <ion-item><ion-label><b>Email:</b> {{ auth.user.email }}</ion-label></ion-item>
-    <ion-item><ion-label><b>Roles:</b> {{ auth.user.roles.join(', ') }}</ion-label></ion-item>
-    <ion-item *ngIf="auth.user.storeId"><ion-label><b>Store:</b> {{ auth.user.storeId }}</ion-label></ion-item>
+<ion-content>
+  <div class="page-shell">
+    <ng-container *ngIf="auth.user; else guest">
+      <div class="profile-root">
+        <div class="profile-card section-card">
+          <div class="avatar">{{ (auth.user.name || 'U').charAt(0) }}</div>
+          <div class="details">
+            <div class="name-row">
+              <h2>{{ auth.user.name }}</h2>
+              <div class="pill ghost-pill" *ngIf="auth.user.roles?.length">{{ auth.user.roles.join(', ') }}</div>
+            </div>
+            <div class="muted">{{ auth.user.email }}</div>
+            <div class="muted" *ngIf="auth.user.storeId">Store: {{ auth.user.storeId }}</div>
+            <div class="profile-actions">
+              <ion-button fill="outline" routerLink="/">Back to catalog</ion-button>
+              <ion-button routerLink="/logout">Logout</ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
 
-    <ion-button expand="block" (click)="logout()">Logout</ion-button>
-  </ng-container>
-
-  <ng-template #guest>
-    <p>You’re not logged in.</p>
-    <ion-button routerLink="/login">Login</ion-button>
-  </ng-template>
+    <ng-template #guest>
+      <div class="empty-placeholder section-card">
+        <p>You’re not logged in.</p>
+        <ion-button routerLink="/login">Login</ion-button>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>

@@ -105,6 +105,19 @@
       "images": [
         "assets/products/necklace.webp"
       ],
+      "category": "crafts",
+      "storeId": "s1"
+    },
+    {
+      "id": "d91b",
+      "title": "Rings",
+      "price": 2,
+      "description": "",
+      "currency": "USD",
+      "images": [
+        "assets/products/rings.jpg"
+      ],
+      "category": "crafts",
       "storeId": "s1"
     }
   ],
@@ -491,6 +504,23 @@
       "total": 16,
       "status": "PLACED",
       "createdAt": "2025-11-28T16:17:27.887Z"
+    },
+    {
+      "id": "6ffb",
+      "customerName": "Carl",
+      "phone": "1234567890",
+      "pickupTime": "Today 6 PM",
+      "items": [
+        {
+          "productId": "8f71",
+          "title": "Necklace",
+          "price": 4,
+          "qty": 2
+        }
+      ],
+      "total": 8,
+      "status": "PLACED",
+      "createdAt": "2025-12-07T19:29:46.383Z"
     }
   ],
   "users": [

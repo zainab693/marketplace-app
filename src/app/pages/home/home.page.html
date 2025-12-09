@@ -10,6 +10,7 @@
         <ion-button class="nav-link" color="primary" fill="clear" shape="round" routerLink="/profile">Profile</ion-button>
         <ion-button *ngIf="auth.user?.roles?.includes('vendor') && auth.user?.storeId as sid" class="nav-link" color="primary" fill="clear" shape="round" [routerLink]="['/store', sid]">My Store</ion-button>
         <ion-button *ngIf="!auth.user" class="nav-link" color="primary" fill="clear" shape="round" routerLink="/login">Login</ion-button>
+        <ion-button *ngIf="!auth.user" class="nav-link" color="primary" fill="clear" shape="round" routerLink="/register">Register</ion-button>
         <ion-button *ngIf="auth.user" class="nav-link" color="primary" fill="clear" shape="round" routerLink="/logout">Logout</ion-button>
         <ion-button routerLink="/cart" class="cart-btn nav-cart" fill="solid" shape="round">
           <span class="cart-icon" aria-hidden="true">🛒</span>
